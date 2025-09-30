@@ -2,6 +2,9 @@
 \usepackage{graphicx} % Required for inserting images
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{inconsolata} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
 \usepackage{float}
 
 % Code highlighting (needs --shell-escape in Overleaf if using minted)
@@ -15,14 +18,12 @@
 \definecolor{keywordblue}{rgb}{0,0,0.8}
 
 \lstdefinestyle{mystyle}{
-    basicstyle=\ttfamily\small,
     basicstyle=\fontfamily{zi4}\selectfont\small,
     backgroundcolor=\color{backcolour},   
     commentstyle=\color{codegreen},
     keywordstyle=\color{magenta},
     numberstyle=\tiny\color{codegray},
     stringstyle=\color{codepurple},
-    basicstyle=\ttfamily\footnotesize,
     breakatwhitespace=false,         
     breaklines=true,                 
     captionpos=b,                    
@@ -38,12 +39,13 @@
     rulecolor=\color{gray},    % frame color
     xleftmargin=5pt,
     xrightmargin=5pt
+    upquote=true
 }
 
 \lstset{
     style=mystyle,
-    keywordstyle=\color{blue}\bfseries,  % keywords in bold blue
-    morekeywords={std::vector, size_t},  % highlight C++ specific stuff
+    language=C++,
+    morekeywords={std::vector, size_t}
 }
 
 % Theorem/definition environments
@@ -152,7 +154,7 @@
         \subsubsection{Geometric}
             \begin{figure}[h]
                 \centering
-                \includegraphics[width=1\textwidth]{examples/1-1.png} 
+                \includegraphics[width=1\textwidth]{1-1.png} 
                 \caption{Geometric representation of 2D Vector.}
                 \label{fig:1}
             \end{figure}
@@ -166,7 +168,7 @@
             
             \begin{figure}[H]
                 \centering
-                \includegraphics[width=1\textwidth]{examples/1-2.png} 
+                \includegraphics[width=1\textwidth]{1-2.png} 
                 \caption{Geometric representation of 3D Vector.}
                 \label{fig:2}
             \end{figure}
@@ -225,7 +227,8 @@ int main() {
                 ||\begin{bmatrix} 3 \\ 4 \end{bmatrix}|| = \sqrt{3^2 + 4^2} = 5
             \end{equation}
 
-            \textbf{Note}: The subscript \textbf{'n'} is the total amount of \textbf{components} in a column when discussing vectors.
+            \textbf{Note}: The subscript \textbf{'n'} is the total amount of \textbf{components} in a column when discussing vectors. \\
+            Also worth noting: When the magnitude of a vector is \textbf{equal to 1} it is known as a \textbf{unit vector}.
 
     \subsection{Vector Operations}
         \subsubsection{Vector Addition}
@@ -245,7 +248,7 @@ int main() {
                     \begin{bmatrix} 6 \\ 8 \\ 10 \\ 12 \end{bmatrix}
             \end{equation}
 
-        \subsection{Vector Subtraction}
+        \subsubsection{Vector Subtraction}
             If both vectors are the same size of \textbf{'n'}, you can subtract 2 vectors by adding there \textbf{components}.
             \begin{equation}
                 \mathbf{a - b} =
@@ -263,7 +266,7 @@ int main() {
             \end{equation}
 
         \newpage
-        \subsection{Vector Scalar Multiplication}
+        \subsubsection{Vector Scalar Multiplication}
             Vector Scalar Multiplication is the act of multiplying a vector by a Scalar. You multiply the scalar to all \textbf{components} inside the vector.
 
             \begin{equation}
@@ -278,5 +281,70 @@ int main() {
                 \begin{bmatrix} 5 \\ 10 \\ 15 \\ 20 \end{bmatrix}
             \end{equation}
 
-        \subsection{}
+        \subsubsection{Dot Product}
+            A dot product (also known as a \textbf{inner product} is the sum of all components between to vectors.
+
+            Algebraically it can be used to measure the similarity between 2 vectors.
+            If you have 2 vectors of the same \textbf{'n'}:
+
+            \begin{equation}
+                \textbf{u} = \begin{bmatrix} u_1 \\ u_2 \\ \cdot \\ \cdot \\ \cdot \\ u_n \end{bmatrix},
+                \textbf{v} = \begin{bmatrix} v_1 \\ v_2 \\ \cdot \\ \cdot \\ \cdot \\ v_n \end{bmatrix} 
+            \end{equation}
+
+            Then the \textbf{dot product} would be:
+
+            \begin{equation}
+                \textbf{u} + \textbf{v} = u_1v_1 + u_2v_2 +\cdot \cdot \cdot + u_nv_n
+            \end{equation}
+
+            \newpage
+            Example:
+
+            \begin{equation}
+                \textbf{u} = \begin{bmatrix} 2 \\ 3 \end{bmatrix},
+                \textbf{v} = \begin{bmatrix} 4 \\ -1 \end{bmatrix}
+            \end{equation}
+
+            \begin{equation}
+                \textbf{u} * \textbf{v} = (2 \cdot 4) + (4 \cdot -1) = 8 -3 = 5
+            \end{equation}
+
+            Geometrically the dot product can also relate to angles between vectors:
+
+            \begin{equation}
+                \textbf{u} \cdot \textbf{v} = \|\textbf{u}\| \|\textbf{v}\|\\cos\theta
+            \end{equation}
+
+            \begin{itemize}
+                \item $\|\textbf{u}\|$ is the magnitude (length) of $\textbf{u}$
+                \item $\theta$ is the angle between $\|\textbf{u}\|$ and $\|\textbf{v}\|$
+            \end{itemize}
+
+            Useful notes:
+
+            \begin{itemize}
+                \item If $\textbf{u} \cdot \textbf{v}$ 
+                    > 0: Vectors are pointing in a similar direction.
+                \item If $\textbf{u} \cdot \textbf{v}$ 
+                    < 0: vectors are pointing in a opposite directions.
+                \item If $\textbf{u} \cdot \textbf{v}$ 
+                    = 0: vectors are perpendicular
+            \end{itemize}
+
+        \subsubsection{Cross Product}
+            Cross product is a operation that creates a new vector perpendicular to the inputted ones. This only works with 3D Vectors.
+
+            \begin{equation}
+                \textbf{u} × \textbf{v} = \begin{bmatrix} a_2b_3 - a_3b_2 \\ a_3b_1 - a_1b_3 \\ a_1b_2 - a_2b_1 \end{bmatrix}
+            \end{equation}
+
+        \subsubsection{Normalization}
+            Normalization converts the inputted vector into a \textbf{unit vector}.
+
+            \begin{equation}
+                \hat{a} = \frac{\textbf{a}}{||\textbf{a}||}
+            \end{equation}
+
+            When a vector is \textbf{hatted} (e.g., $\hat{a}, \hat{b}$)
 \end{document}
