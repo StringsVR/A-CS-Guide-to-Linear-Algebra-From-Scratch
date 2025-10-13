@@ -101,20 +101,19 @@
             \\
             Here, the set $S$ contains three vectors in 2D space. Anything not in $S$ is not considered part of this particular set. 
             \\\\
-            Later, we'll see a \textbf{vector space}, which is a special type of vector set. In a vector space, you can combine vectors or stretch them, and you’ll never leave the set — everything still stays inside the set.
+            Later, we will see a \textbf{vector space}, which is a special type of vector set. In a vector space, you can combine vectors or stretch them, and you will never leave the set - everything still stays inside the set.
 
-            Set theory is a large field within mathematics, and there are a lot of resources available online to help learn it!
+            Set theory is a large field within mathematics, and there are many resources available online to help you learn it!
 
         \subsection{Vector Space}
-            Now that we understand what a \textbf{vector set} is — a collection of vectors, let's talk about a \textbf{vector space} It is a special type of vector set where you can do two things freely:
+            Now that we understand what a \textbf{vector set} is — a collection of vectors, let's talk about a \textbf{vector space} It is a special type of vector set where you can do\frac{\pi}{2} = \int_{-1}^{1} \sqrt{1-x^2}\ dx two things freely:
 
             \begin{enumerate}
                 \item \textbf{Add any two vectors} from the set, and the result is still in the set.
                 \item \textbf{Multiply any vector by a number} (scalar), and the result is still in the set.
             \end{enumerate}
 
-            In other words, a vector space is a “magic basket” of vectors:  
-                - You can combine vectors or stretch/shrink them.  
+            In other words, a vector space is a 'magic basket' of vectors: - You can combine vectors or stretch/shrink them.  
                 - No matter what you do, you never leave the basket.
 
             \textbf{Example:} All 2D vectors form a vector space:
@@ -132,11 +131,9 @@
                 
                 \item Multiply a vector by a scalar: \\
                 \begin{equation}
-                    2 \cdot \begin{bmatrix}1 \\ 2 \end{bmatrix} =      \begin{bmatrix}2 \\ 4 \end{bmatrix} \in \mathbb{R}^2
-                \end{equation}
-            \end{itemize}
+                    2 \cdot \begin{bmatrix}1 \\ 2 \end{bmatrix} =      \begin{bmatrix}2 \\ 4 \end{bmatrix} \in \mathbb{R} 2 \end{equation} \end{itemize}
 
-            Notice how the results stay inside the set — that’s the defining feature of a vector space.
+            Notice how the results stay inside the set, that is, the defining feature of a vector space.
 
     \section{Representing Vectors}
 
@@ -367,11 +364,148 @@ int main() {
             \end{equation}
 
         \subsection{Normalization}
-            Normalization converts a vector into a \emph{unit vector}.
+            Normalization converts a vector to a \emph{unit vector}.
 
             \begin{equation}
                 \hat{a} = \frac{\vec{a}}{||\vec{a}||}
             \end{equation}
 
-            When a vector is \emph{hatted} (e.g., $\hat{a}, \hat{b}$), it is a unit vector.
+            When a vector is \emph{hatted} (e.g. $\hat{a}, \hat{b}$), it is a unit vector.
+
+    \section{Matrix}
+        Matrices are also one of the biggest building blocks of linear algebra. A Matrix is a array of values with \emph{m} rows and \emph{n} cols (\emph{m} x \emph{n}). Its similar to a vector, a vector could be considered a single column matrix. For example, consider the matrix:
+
+        \begin{equation}
+            {A} = \begin{bmatrix} 
+                1 & 2 \\ 
+                3 & 4 \\ 
+                5 & 6
+            \end{bmatrix}
+        \end{equation} \\
+
+        This matrix has 3 rows and 2 columns (3 x 2), therefore its \emph{m} = 3, \emph{n} = 2.
+        On a basic level a matrix just stores information on 2 axis'. Matrix values can be written as a subscript. The first value being \emph{m} and the 2nd being \emph{n}. So the value of the 5th row, 2nd column could be written as: $\mathbf{a_{51}}$. See here:
+        
+        \begin{equation}
+            {A} = \begin{bmatrix} 
+                a_{11} & a_{12} \\ 
+                a_{21} & a_{22} \\ 
+                a_{31} & a_{32}
+            \end{bmatrix}
+        \end{equation} 
+
+        \emph{i} and \emph{j} are index values. \emph{i} = row numbers, \emph{j} = column numbers.
+
+        \subsection{Matrix Operations}
+            \subsubsection{Addition}
+                If both matrices have the same \emph{m} and \emph{n} you can combine them by adding there \emph{components}.
+
+                \begin{equation}
+                A + B =
+                    \begin{bmatrix} 2 & 4 & 1 \\ 0 & -3 & 5 \end{bmatrix} +
+                    \begin{bmatrix} 1 & 0 & -1 \\ 7 & 2 & 3 \end{bmatrix} =
+                    \begin{bmatrix} 2 + 1 & 4 + 0 & 1 + (-1) \\ 0 + 7 & -3 + 2 & 5 + 3 \end{bmatrix} =
+                    \begin{bmatrix} 3 & 4 & 0 \\ 7 & -1 & 8 \end{bmatrix}
+                \end{equation}
+
+                It is basically the same thing as vector additions except you introduce columns.
+                
+            \subsubsection{Subtraction}
+                If both matrices have the same \emph{m} and \emph{n} you can subtract them by adding there \emph{components}.
+
+                \begin{equation}
+                A - B =
+                    \begin{bmatrix} 2 & 4 & 1 \\ 0 & -3 & 5 \end{bmatrix} +
+                    \begin{bmatrix} 1 & 0 & -1 \\ 7 & 2 & 3 \end{bmatrix} =
+                    \begin{bmatrix} 2 - 1 & 4 - 0 & 1 - (-1) \\ 0 - 7 & -3 - 2 & 5 - 3 \end{bmatrix} =
+                    \begin{bmatrix} 1 & 4 & 2 \\ -7 & -5 & 2 \end{bmatrix}
+                \end{equation}
+
+                Generally the same principle as addition except you subtract the components.
+            \subsubsection{}
+
+            \subsubsection{Scalar Multiplication}
+                Scalar multiplication in a matrix is very similar to in a vector, except you multiply by the columns too.
+                
+                \begin{equation}
+                c \cdot A = c \cdot
+                    \begin{bmatrix} 
+                    a_{11} & a_{12} \\ a_{21} & a_{22} \\ \cdot \\ \cdot \\ \cdot \\ a_{m1} & a_{m2} \end{bmatrix} =
+                    \begin{bmatrix}  
+                    c \cdot a_{11} & c \cdot a_{21} \\ c \cdot a_{21} & c \cdot a_{22} \\ \cdot \\ \cdot \\ \cdot \\  c \cdot a_{m1} & c \cdot a_{m2} \end{bmatrix} 
+                \text{where } c \in \mathbb{A}
+            \end{equation}
+                
+            \subsubsection{Transpose}
+                A function that "flips" a matrix. It flips it rows and columns.
+                \begin{equation}
+                    A^T = \begin{bmatrix}
+                        a_{ji}
+                    \end{bmatrix}
+                \end{equation}
+
+                Example:
+                \begin{equation}
+                    A = \begin{bmatrix}
+                        a_{11} & a_{12} & a_{13} \\
+                        a_{21} & a_{22} & a_{23}
+                    \end{bmatrix}
+                \end{equation}
+
+                \begin{equation}
+                    A^T = \begin{bmatrix}
+                        a_{11} & a_{21} \\
+                        a_{12} & a_{22} \\
+                        a_{13} & a_{23}
+                    \end{bmatrix}
+                \end{equation}
+
+                This can be a little hard to explain with letters so lets use a actual matrix:
+
+                \begin{equation}
+                    A = \begin{bmatrix}
+                        2 & 1 & -3 \\
+                        5 & 9 & 4
+                    \end{bmatrix}
+                \end{equation}
+
+                \begin{equation}
+                    A^T = \begin{bmatrix}
+                        2 & 5 \\
+                        1 & 9 \\
+                        -3 & 4 \\
+                    \end{bmatrix}
+                \end{equation}
+        \subsection{Matrix Types}
+            \subsubsection{Identity Matrix}
+                An identity matrix is a square matrix with 1's on the diagonal and 0's everywhere else. Heres what a 5 x 5 would look like:
+
+                \begin{equation}
+                    I_5 = 
+                    \begin{bmatrix}
+                          1 & 0 & 0 & 0 & 0 \\
+                          0 & 1 & 0 & 0 & 0 \\
+                          0 & 0 & 1 & 0 & 0 \\
+                          0 & 0 & 0 & 1 & 0 \\
+                          0 & 0 & 0 & 0 & 1
+                    \end{bmatrix}
+                \end{equation}
+
+                A identity matrix can be written as: $\mathbf{I_n}$. Where \emph{n} is the size. It acts as "1" in normal multiplication. \textbf{It doesn't change the matrix its multiplied with}.
+
+            \subsubsection{Zero Matrix}
+                A zero matrix is a matrix with all zeros. Its pretty simple lol:
+
+                \begin{equation}
+                    0_5 = 
+                    \begin{bmatrix}
+                          0 & 0 & 0 & 0 & 0 \\
+                          0 & 0 & 0 & 0 & 0 \\
+                          0 & 0 & 0 & 0 & 0 \\
+                          0 & 0 & 0 & 0 & 0 \\
+                          0 & 0 & 0 & 0 & 0
+                    \end{bmatrix}
+                \end{equation}
+
+                It's like a identity matrix but for addition. Adding something by zero doesn't change its value.
 \end{document}
