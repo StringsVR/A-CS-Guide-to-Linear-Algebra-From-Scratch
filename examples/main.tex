@@ -72,7 +72,7 @@
     Linear algebra is a section of math dedicated to solving systems of linear equations and understanding geometric concepts such as planes and lines. The underlying foundation of linear algebra is vectors and matrices (the plural of "matrix"). From a CS perspective, the use of linear algebra can often be seen in graphics, machine learning, and cryptography.
     This paper will be used to build from the basic fundamentals to an above surface knowledge of the topic from the math and its computational implementation.
 
-\chapter{Basic Concepts}
+\chapter{Scalars and Vectors}
     \section{Scalar}
         A scalar refers to a normal number used in a vector operation.
         They are typically \emph{real numbers ($\mathbb{R}$)} or \emph{complex numbers ($\mathbb{C}$)} 
@@ -106,7 +106,7 @@
             Set theory is a large field within mathematics, and there are many resources available online to help you learn it!
 
         \subsection{Vector Space}
-            Now that we understand what a $\textbf{vector set}$ is — a collection of vectors, let's talk about a \textbf{vector space} It is a special type of vector set where you can do $\frac{\pi}{2} = \int_{-1}^{1} \sqrt{1-x^2}$ dx two things freely:
+            Now that we understand what a \textbf{vector set} is (a collection of vectors), let's talk about a \textbf{vector space} It is a special type of vector set where you can do two things freely:
 
             \begin{enumerate}
                 \item \textbf{Add any two vectors} from the set, and the result is still in the set.
@@ -372,8 +372,9 @@ int main() {
 
             When a vector is \emph{hatted} (e.g. $\hat{a}, \hat{b}$), it is a unit vector.
 
-    \section{Matrix}
-        Matrices are also one of the biggest building blocks of linear algebra. A Matrix is a array of values with \emph{m} rows and \emph{n} cols (\emph{m} x \emph{n}). Its similar to a vector, a vector could be considered a single column matrix. For example, consider the matrix:
+\chapter{Matrices}
+    \section{What is a Matrix?}
+        Matrices are also one of the biggest building blocks of linear algebra. A matrix is an array of values with $m$ rows and $n$ columns ($m \times n$). Matrices are similar to vectors; a vector could be considered a single-column matrix (in fact, when programming with them, that is often the case!). For example, consider the matrix:
 
         \begin{equation}
             {A} = \begin{bmatrix} 
@@ -383,8 +384,9 @@ int main() {
             \end{bmatrix}
         \end{equation} \\
 
-        This matrix has 3 rows and 2 columns (3 x 2), therefore its \emph{m} = 3, \emph{n} = 2.
-        On a basic level a matrix just stores information on 2 axis'. Matrix values can be written as a subscript. The first value being \emph{m} and the 2nd being \emph{n}. So the value of the 5th row, 2nd column could be written as: $\mathbf{a_{51}}$. See here:
+        This matrix has 3 rows and 2 columns (3 $\times$ 2).
+        
+        Matrix values are often represented using a subscript, with the first value being \emph{m} and the 2nd being \emph{n}. So the value of the 5th row, 2nd column could be written as $\mathbf{a_{5,2}}$. See here:
         
         \begin{equation}
             {A} = \begin{bmatrix} 
@@ -396,116 +398,112 @@ int main() {
 
         \emph{i} and \emph{j} are index values. \emph{i} = row numbers, \emph{j} = column numbers.
 
-        \subsection{Matrix Operations}
-            \subsubsection{Addition}
-                If both matrices have the same \emph{m} and \emph{n} you can combine them by adding there \emph{components}.
+    \section{Matrix Operations}
+        \subsection{Addition}
+            If both matrices have the same dimensions, you can combine them by adding their \emph{components}.
 
-                \begin{equation}
-                A + B =
-                    \begin{bmatrix} 2 & 4 & 1 \\ 0 & -3 & 5 \end{bmatrix} +
-                    \begin{bmatrix} 1 & 0 & -1 \\ 7 & 2 & 3 \end{bmatrix} =
-                    \begin{bmatrix} 2 + 1 & 4 + 0 & 1 + (-1) \\ 0 + 7 & -3 + 2 & 5 + 3 \end{bmatrix} =
-                    \begin{bmatrix} 3 & 4 & 0 \\ 7 & -1 & 8 \end{bmatrix}
-                \end{equation}
+            \begin{multline}
+            A + B =
+                \begin{bmatrix} 2 & 4 & 1 \\ 0 & -3 & 5 \end{bmatrix} +
+                \begin{bmatrix} 1 & 0 & -1 \\ 7 & 2 & 3 \end{bmatrix} = \\
+                \begin{bmatrix} 2 + 1 & 4 + 0 & 1 + (-1) \\ 0 + 7 & -3 + 2 & 5 + 3 \end{bmatrix} =
+                \begin{bmatrix} 3 & 4 & 0 \\ 7 & -1 & 8 \end{bmatrix}
+            \end{multline}
+            
+        \subsection{Subtraction}
+            If both matrices have the same dimensions, you can subtract them by adding their \emph{components}.
 
-                It is basically the same thing as vector additions except you introduce columns.
-                
-            \subsubsection{Subtraction}
-                If both matrices have the same \emph{m} and \emph{n} you can subtract them by adding there \emph{components}.
+            \begin{multline}
+            A - B =
+                \begin{bmatrix} 2 & 4 & 1 \\ 0 & -3 & 5 \end{bmatrix} +
+                \begin{bmatrix} 1 & 0 & -1 \\ 7 & 2 & 3 \end{bmatrix} = \\
+                \begin{bmatrix} 2 - 1 & 4 - 0 & 1 - (-1) \\ 0 - 7 & -3 - 2 & 5 - 3 \end{bmatrix} =
+                \begin{bmatrix} 1 & 4 & 2 \\ -7 & -5 & 2 \end{bmatrix}
+            \end{multline}
 
-                \begin{equation}
-                A - B =
-                    \begin{bmatrix} 2 & 4 & 1 \\ 0 & -3 & 5 \end{bmatrix} +
-                    \begin{bmatrix} 1 & 0 & -1 \\ 7 & 2 & 3 \end{bmatrix} =
-                    \begin{bmatrix} 2 - 1 & 4 - 0 & 1 - (-1) \\ 0 - 7 & -3 - 2 & 5 - 3 \end{bmatrix} =
-                    \begin{bmatrix} 1 & 4 & 2 \\ -7 & -5 & 2 \end{bmatrix}
-                \end{equation}
-
-                Generally the same principle as addition except you subtract the components.
-            \subsubsection{}
-
-            \subsubsection{Scalar Multiplication}
-                Scalar multiplication in a matrix is very similar to in a vector, except you multiply by the columns too.
-                
-                \begin{equation}
-                c \cdot A = c \cdot
-                    \begin{bmatrix} 
-                    a_{11} & a_{12} \\ a_{21} & a_{22} \\ \cdot \\ \cdot \\ \cdot \\ a_{m1} & a_{m2} \end{bmatrix} =
-                    \begin{bmatrix}  
-                    c \cdot a_{11} & c \cdot a_{21} \\ c \cdot a_{21} & c \cdot a_{22} \\ \cdot \\ \cdot \\ \cdot \\  c \cdot a_{m1} & c \cdot a_{m2} \end{bmatrix} 
-                \text{where } c \in \mathbb{A}
+        \subsubsection{Scalar Multiplication}
+            To multiply a matrix by a scalar, simply multiply each component by that scalar.
+            
+            \begin{equation}
+            c \cdot A = c \cdot
+                \begin{bmatrix} 
+                a_{11} & a_{12} \\ a_{21} & a_{22} \\ \cdot \\ \cdot \\ \cdot \\ a_{m1} & a_{m2} \end{bmatrix} =
+                \begin{bmatrix}  
+                c \cdot a_{11} & c \cdot a_{21} \\ c \cdot a_{21} & c \cdot a_{22} \\ \cdot \\ \cdot \\ \cdot \\  c \cdot a_{m1} & c \cdot a_{m2} \end{bmatrix} 
+            \text{where } c \in \mathbb{R}
+        \end{equation}
+            
+        \subsubsection{Transpose}
+            A function that "flips" a matrix. The transpose of a matrix with $m$ rows and $n$ columns has $n$ rows and $m$ columns.
+            
+            \begin{equation}
+                A^T = \begin{bmatrix}
+                    a_{ji}
+                \end{bmatrix}
             \end{equation}
-                
-            \subsubsection{Transpose}
-                A function that "flips" a matrix. It flips it rows and columns.
-                \begin{equation}
-                    A^T = \begin{bmatrix}
-                        a_{ji}
-                    \end{bmatrix}
-                \end{equation}
 
-                Example:
-                \begin{equation}
-                    A = \begin{bmatrix}
-                        a_{11} & a_{12} & a_{13} \\
-                        a_{21} & a_{22} & a_{23}
-                    \end{bmatrix}
-                \end{equation}
+            Example:
+            \begin{equation}
+                A = \begin{bmatrix}
+                    a_{11} & a_{12} & a_{13} \\
+                    a_{21} & a_{22} & a_{23}
+                \end{bmatrix}
+            \end{equation}
 
-                \begin{equation}
-                    A^T = \begin{bmatrix}
-                        a_{11} & a_{21} \\
-                        a_{12} & a_{22} \\
-                        a_{13} & a_{23}
-                    \end{bmatrix}
-                \end{equation}
+            \begin{equation}
+                A^T = \begin{bmatrix}
+                    a_{11} & a_{21} \\
+                    a_{12} & a_{22} \\
+                    a_{13} & a_{23}
+                \end{bmatrix}
+            \end{equation}
 
-                This can be a little hard to explain with letters so lets use a actual matrix:
+            Here is an example that uses actual numbers.
 
-                \begin{equation}
-                    A = \begin{bmatrix}
-                        2 & 1 & -3 \\
-                        5 & 9 & 4
-                    \end{bmatrix}
-                \end{equation}
+            \begin{equation}
+                A = \begin{bmatrix}
+                    2 & 1 & -3 \\
+                    5 & 9 & 4
+                \end{bmatrix}
+            \end{equation}
 
-                \begin{equation}
-                    A^T = \begin{bmatrix}
-                        2 & 5 \\
-                        1 & 9 \\
-                        -3 & 4 \\
-                    \end{bmatrix}
-                \end{equation}
-        \subsection{Matrix Types}
-            \subsubsection{Identity Matrix}
-                An identity matrix is a square matrix with 1's on the diagonal and 0's everywhere else. Heres what a 5 x 5 would look like:
+            \begin{equation}
+                A^T = \begin{bmatrix}
+                    2 & 5 \\
+                    1 & 9 \\
+                    -3 & 4 \\
+                \end{bmatrix}
+            \end{equation}
+    \section{Matrix Types}
+        \subsection{Identity Matrix}
+            An identity matrix is a square matrix with 1s on the diagonal and 0s everywhere else. Here's what a $5 \times 5$ identity matrix would look like: 
 
-                \begin{equation}
-                    I_5 = 
-                    \begin{bmatrix}
-                          1 & 0 & 0 & 0 & 0 \\
-                          0 & 1 & 0 & 0 & 0 \\
-                          0 & 0 & 1 & 0 & 0 \\
-                          0 & 0 & 0 & 1 & 0 \\
-                          0 & 0 & 0 & 0 & 1
-                    \end{bmatrix}
-                \end{equation}
+            \begin{equation}
+                I_5 = 
+                \begin{bmatrix}
+                      1 & 0 & 0 & 0 & 0 \\
+                      0 & 1 & 0 & 0 & 0 \\
+                      0 & 0 & 1 & 0 & 0 \\
+                      0 & 0 & 0 & 1 & 0 \\
+                      0 & 0 & 0 & 0 & 1
+                \end{bmatrix}
+            \end{equation}
 
-                A identity matrix can be written as: $\mathbf{I_n}$. Where \emph{n} is the size. It acts as "1" in normal multiplication. \textbf{It doesn't change the matrix its multiplied with}.
+            The identity matrix is important because it is the multiplicative identity: any matrix times the appropriately sized identity matrix is that matrix!
 
-            \subsubsection{Zero Matrix}
-                A zero matrix is a matrix with all zeros. Its pretty simple lol:
+        \subsection{Zero Matrix}
+            A zero matrix is a matrix with all zeros. It's pretty simple lol:
 
-                \begin{equation}
-                    0_5 = 
-                    \begin{bmatrix}
-                          0 & 0 & 0 & 0 & 0 \\
-                          0 & 0 & 0 & 0 & 0 \\
-                          0 & 0 & 0 & 0 & 0 \\
-                          0 & 0 & 0 & 0 & 0 \\
-                          0 & 0 & 0 & 0 & 0
-                    \end{bmatrix}
-                \end{equation}
+            \begin{equation}
+                0_{5,5} = 
+                \begin{bmatrix}
+                      0 & 0 & 0 & 0 & 0 \\
+                      0 & 0 & 0 & 0 & 0 \\
+                      0 & 0 & 0 & 0 & 0 \\
+                      0 & 0 & 0 & 0 & 0 \\
+                      0 & 0 & 0 & 0 & 0
+                \end{bmatrix}
+            \end{equation}
 
-                It's like a identity matrix but for addition. Adding something by zero doesn't change its value.
+            Similarly to how any number plus zero is that number, any matrix plus the appropriately sized zero matrix is that matrix.
 \end{document}
